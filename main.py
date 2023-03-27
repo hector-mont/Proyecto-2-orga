@@ -3,7 +3,7 @@ from Juego import Juego
 
 #Leer y escribir
 
-def cargar_juego(juegos):
+def cargar_juegos(juegos):
     with open('juegos.csv','r') as archivo_csv:
         csv_lector = csv.reader(archivo_csv)
 
@@ -17,6 +17,19 @@ def cargar_juego(juegos):
             juegos.append(juego)
 
     return juegos
+
+def guardar_juegos(juegos):
+    with open('juegos.csv','w') as archivo_csv:
+        csv_escritor = csv.writer(archivo_csv)
+
+        for juego in juegos:
+            line = [
+                juego.modelo,
+                juego.titulo,
+                juego.precio,
+                juego.status
+            ]
+            csv_escritor.writerow(line)
 
 
 
