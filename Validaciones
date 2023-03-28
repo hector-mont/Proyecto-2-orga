@@ -1,0 +1,70 @@
+import re
+
+class Validaciones:
+    def validar_titulo(juegos):
+        while True:
+            try:
+                titulo = input('\nPor favor ingrese el título del juego (no mayor a 10 caracteres): ')
+                if len(titulo) > 10:
+                    raise Exception              
+                elif titulo == '':
+                    raise Exception
+                
+                for i in juegos:
+                    if i.titulo == titulo:
+                        raise Exception
+            except:
+                print('Título incorrecto. Por favor intente nuevamente.')
+            else:
+                break
+        
+        return titulo
+    
+    def validar_modelo(juegos):
+        while True:
+            try:
+                modelo = input('\nPor favor ingrese el modelo del juego (debe contener 6 letras y 2 dígitos): ')
+                formato = '[A-Z][A-Z][A-Z][A-Z][0-9][0-9]'
+
+                if not re.match(formato, modelo):
+                    raise Exception
+
+                #input_usuario = input("Introduce un texto de 6 letras y 2 dígitos: ")
+                #patron = r'^[A-Za-z]{6}\d{2}$'
+                #if re.match(patron, input_usuario):
+                #     print("El input es válido.")
+                #else:
+                #    print("El input no es válido.")
+
+                for i in juegos:
+                    if i.modelo == modelo:
+                        raise Exception
+            except:
+                print('Modelo incorrecto. Por favor intente nuevamente. ')
+            else:
+                break
+            
+        return modelo
+                
+    
+    def validar_precio():
+        while True:
+            try:
+                precio = int(input("\nPor favor ingrese el precio de alquiler del juego (monto máximo: 999): "))
+                num = int(precio)
+            except ValueError:
+                print("Precio incorrecto. Debes ingresar un número.")
+                continue
+            if precio < 0:
+                print("Precio incorrecto. Debes ingresar un número entero positivo.")
+                continue
+            elif precio > 999:
+                print("Debes ingresar un número menor a 999.")
+                continue
+            elif num != precio:
+                 print("Precio incorrecto. Debes ingresar un número entero.")
+                 continue
+            else:
+                break
+        
+        return precio
